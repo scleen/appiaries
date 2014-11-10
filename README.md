@@ -1,0 +1,4 @@
+appiaries
+=========
+
+appiaries ruby client

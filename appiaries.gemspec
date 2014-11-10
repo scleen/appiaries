@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rekognize/version'
+require 'appiaries/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rekognize"
+  spec.name          = "appiaries"
   spec.version       = Rekognize::VERSION
-  spec.authors       = ["Dennis de Vulder"]
-  spec.email         = ["dennisdevulder@gmail.com"]
+  spec.authors       = ["Scleen"]
+  spec.email         = ["scleentube@gmail.com"]
   spec.description   = %q{}
-  spec.summary       = %q{Ruby wrapper of Rekognition Face and Scenery Detection and Recognition API}
-  spec.homepage      = "http://rubygems.org/gems/rekognize"
+  spec.summary       = %q{Ruby wrapper of Appiaries mBaaS API}
+  spec.homepage      = "http://rubygems.org/gems/appiaries"
   spec.license       = "MIT"
 
   spec.files = Dir["README.md","Gemfile","Rakefile", "spec/*", "lib/**/*"]

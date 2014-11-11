@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
-require 'parse/protocol'
-require 'parse/client'
+require 'appiaries/protocol'
+require 'appiaries/client'
 
 module Appiaries
   class JsonData

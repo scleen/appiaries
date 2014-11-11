@@ -1,0 +1,2 @@
+# must be renamed to config.yml before running test
+'appiaries_app_token': 'YOUR-APP-TOKEN'

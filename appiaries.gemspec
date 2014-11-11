@@ -5,7 +5,7 @@ require 'appiaries/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "appiaries"
-  spec.version       = Rekognize::VERSION
+  spec.version       = Appiaries::VERSION
   spec.authors       = ["Scleen"]
   spec.email         = ["scleentube@gmail.com"]
   spec.description   = %q{}

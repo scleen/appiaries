@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
-require "appiaries/version"
 require 'rubygems'
+require 'bundler/setup'
+require "appiaries/version"
 require 'rest-client'
 require 'json'
 

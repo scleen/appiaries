@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+require 'appiaries/protocol'
 
 require 'logger'
 

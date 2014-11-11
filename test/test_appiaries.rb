@@ -39,4 +39,20 @@ class AppiariesTest < Test::Unit::TestCase
     res = client.post(uri, {"my_name_is" =>"appiaries"}.to_json)
     assert_equal "appiaries", res["my_name_is"]
   end
+  def test_jsondata_create_update
+    # TODO
+  end
+  def test_jsondata_create_delete
+    # TODO
+  end
+  def test_jsondata_query
+    # TODO
+  end
+  def test_jsondataclient_get
+    collection_id = "sample_json_data"
+    client = Appiaries::JsonData.new(:application_token => @apptoken, :application_id => APP_ID, :datastore_id => DATASTORE_ID, :collection_id => collection_id)
+    res = client.get("sample")
+    assert_equal "sample", res["_id"]
+    assert_equal "sample", res["name"]
+  end
 end

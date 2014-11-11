@@ -22,7 +22,6 @@ module Appiaries
       @quiet          = data[:quiet] || false
 
       options = {:request => {:timeout => 30, :open_timeout => 30}}
-
     end
     
     # Perform an HTTP request for the given uri and method
@@ -45,6 +44,7 @@ module Appiaries
         query['get'] = true
       end
       uri += "?" + URI.escape(query.collect{|k,v| "#{k}=#{v}"}.join('&'))
+      # puts "execute=>" + uri
       JSON.parse RestClient::Request.execute(
             :method => method,
             :url => uri,
@@ -68,5 +68,21 @@ module Appiaries
     def delete(uri)
       request(uri, :delete)
     end
-  end
+  end # Client
+  
+  class JsonData < Client
+    attr_accessor :collection_id
+    attr_accessor :datastore_id
+    attr_accessor :application_id
+    def initialize(data = {}, &blk)
+      super(data)
+      @collection_id  = data[:collection_id]
+      @datastore_id   = data[:datastore_id]
+      @application_id = data[:application_id]
+    end
+    def get(objectid)
+      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, objectid)
+      super(uri)
+    end
+  end # JsonData
 end

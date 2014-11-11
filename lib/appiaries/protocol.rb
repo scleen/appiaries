@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-module Parse
+module Appiaries
   # A module which encapsulates the specifics of Appiaries's REST API.
   module Protocol
 

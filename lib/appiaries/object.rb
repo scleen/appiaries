@@ -3,10 +3,10 @@ require 'appiaries/protocol'
 require 'appiaries/client'
 
 module Appiaries
-  class JsonData
+  class JsonDataObject
 
   end
-  class FileData
+  class FileDataObject
 
   end
 end

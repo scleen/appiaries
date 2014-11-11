@@ -31,4 +31,12 @@ class AppiariesTest < Test::Unit::TestCase
     assert_equal "sample", res["_id"]
     assert_equal "sample", res["name"]
   end
+  def test_jsondata_create
+    host = Appiaries::Protocol::HOST
+    collection_id = "sample_json_data"
+    uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, nil)
+    client = Appiaries::Client.new(:application_token => @apptoken)
+    res = client.post(uri, {"my_name_is" =>"appiaries"}.to_json)
+    assert_equal "appiaries", res["my_name_is"]
+  end
 end

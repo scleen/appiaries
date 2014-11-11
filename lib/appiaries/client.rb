@@ -2,6 +2,7 @@
 require 'appiaries/protocol'
 
 require 'logger'
+require 'uri'
 
 module Appiaries
   class Client
@@ -38,8 +39,12 @@ module Appiaries
       end
       
       if !query.nil?
-        uri += query.to_param
+        query['get'] = true
+      else
+        query = {}
+        query['get'] = true
       end
+      uri += "?" + URI.escape(query.collect{|k,v| "#{k}=#{v}"}.join('&'))
       JSON.parse RestClient::Request.execute(
             :method => method,
             :url => uri,

@@ -17,7 +17,7 @@ module Parse
 
     # The HTTP header used for passing your application TOKEN to the
     # Appiaries API.
-    HEADER_APP_ID   = "X-APPIARIES-TOKEN"
+    HEADER_APPIARIES_TOKEN   = "X-APPIARIES-TOKEN"
     
     # URI Helpers
     # ----------------------------------------

@@ -33,9 +33,13 @@ module Appiaries
 
     # Construct a uri referencing a given Appiaries File (Binary) Data
     # class or instance (of object_id is non-nil).
-    def Protocol.filedata_uri(datastore_id, application_id, collection_id, object_id = nil)
+    def Protocol.filedata_uri(datastore_id, application_id, collection_id, object_id = nil, binary = false)
       if object_id
-        "/v#{VERSION}/bin/#{datastore_id}/#{application_id}/#{collection_id}/#{object_id}"
+        if binary
+          "/v#{VERSION}/bin/#{datastore_id}/#{application_id}/#{collection_id}/#{object_id}/_bin"
+        else
+          "/v#{VERSION}/bin/#{datastore_id}/#{application_id}/#{collection_id}/#{object_id}"
+        end
       else
         "/v#{VERSION}/bin/#{datastore_id}/#{application_id}/#{collection_id}"
       end

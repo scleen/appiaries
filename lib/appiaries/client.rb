@@ -99,5 +99,38 @@ module Appiaries
       uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, object_id)
       super(uri)
     end
-  end # JsonData
+  end # JsonDataClient
+  
+  class FileDataClient < Client
+    attr_accessor :collection_id
+    attr_accessor :datastore_id
+    attr_accessor :application_id
+    def initialize(data = {}, &blk)
+      super(data)
+      @collection_id  = data[:collection_id]
+      @datastore_id   = data[:datastore_id]
+      @application_id = data[:application_id]
+    end
+    def create(payload = {})
+      uri = "https://" + self.host + Appiaries::Protocol.filedata_uri(@datastore_id, @application_id, @collection_id, nil)
+      post(uri, payload)
+    end
+    def get(cond)
+      # TODO if cond.is_a String, tehn get one, otherwise search and find
+      uri = "https://" + self.host + Appiaries::Protocol.filedata_uri(@datastore_id, @application_id, @collection_id, object_id)
+      super(uri)
+    end
+    def get_binary(object_id)
+      uri = "https://" + self.host + Appiaries::Protocol.filedata_uri(@datastore_id, @application_id, @collection_id, object_id, true)
+      get(uri)
+    end
+    def update(object_id, payload = {})
+      uri = "https://" + self.host + Appiaries::Protocol.filedata_uri(@datastore_id, @application_id, @collection_id, object_id)
+      post(uri, payload)
+    end
+    def delete(object_id)
+      uri = "https://" + self.host + Appiaries::Protocol.filedata_uri(@datastore_id, @application_id, @collection_id, object_id)
+      super(uri)
+    end
+  end # FileDataClient
 end

@@ -40,10 +40,30 @@ class AppiariesTest < Test::Unit::TestCase
     assert_equal "appiaries", res["my_name_is"]
   end
   def test_jsondata_create_update
-    # TODO
+    host = Appiaries::Protocol::HOST
+    collection_id = "sample_json_data"
+    uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, nil)
+    client = Appiaries::Client.new(:application_token => @apptoken)
+    res = client.post(uri, {"my_name_is" =>"to be updated"}.to_json)
+    assert_equal "to be updated", res["my_name_is"]
+    
+    newbody = {"my_name_is" => "SAYAKA", "greeting" => "hello"}
+    res = client.post(uri, newbody.to_json)
+    assert_equal "SAYAKA", res["my_name_is"]
+    assert_equal "hello", res["greeting"]
   end
   def test_jsondata_create_delete
-    # TODO
+    host = Appiaries::Protocol::HOST
+    collection_id = "sample_json_data"
+    uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, nil)
+    client = Appiaries::Client.new(:application_token => @apptoken)
+    res = client.post(uri, {"my_name_is" =>"to be deleted"}.to_json)
+    assert_equal "to be deleted", res["my_name_is"]
+    
+    objectid = res['_id']
+    uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, objectid)
+    res = client.delete(uri)
+    # TODO assert
   end
   def test_jsondata_query
     # TODO

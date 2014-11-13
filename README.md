@@ -43,6 +43,46 @@ client = Appiaries::JsonData.new(:application_token => @apptoken, :application_i
 res = client.get("object_id")
 ```
 
+# API COVERAGE STATUS
+
+## JSON DATA
+
+### METHOD
+
+| METHOD | REST API | JsonDataClient | Status |
+|:-----------|:-----------:|:------------:|:------------:|
+| Insert Json |    create |     create     | OK |
+| Replace    |      put |    put    | OK |
+| Update Json      |         patch |     patch     | OK |
+| Delete Multiple Jsons         |       delete|      delete      | Not Ready |
+| Delete Json Field         |          delete|      delete      | Not Ready |
+| Delete Single Json      |       delete|    delete    | OK |
+| Get      |       get|    get    | OK |
+| Query    |     get|   get    | Not Ready |
+| Count    |    count |   count    | Not Ready |
+
+### QUERY
+
+http://docs.appiaries.com/v1/api/datastore/conditions
+
+| Operator | Appiaries::Query | Status  |
+| -------- |:----------------:|:-----:|
+| exist    | exist            | OK |
+| eq       | eq               | OK |
+| neq      | neq              | OK |
+| is       | is               | Testing |
+| isn      | isn              | Testing |
+| lt       | lt               | Testing |
+| lte      | lte              | Testing |
+| gt       | gt               | Testing |
+| gte      | gte              | Testing |
+| sw       | sw               | Testing |
+| nsw      | nsw              | Testing |
+| in       | in               | Testing |
+| wic      | wic              | Not Ready |
+| wib      | wib              | Not Ready |
+| wip      | wip              | Not Ready |
+
 # LICENSE
 
 Copyright (c) 2014 Scleen

@@ -70,7 +70,7 @@ class AppiariesTest < Test::Unit::TestCase
   end
   def test_jsondataclient_get
     collection_id = "sample_json_data"
-    client = Appiaries::JsonData.new(:application_token => @apptoken, :application_id => APP_ID, :datastore_id => DATASTORE_ID, :collection_id => collection_id)
+    client = Appiaries::JsonDataClient.new(:application_token => @apptoken, :application_id => APP_ID, :datastore_id => DATASTORE_ID, :collection_id => collection_id)
     res = client.get("sample")
     assert_equal "sample", res["_id"]
     assert_equal "sample", res["name"]

@@ -70,7 +70,7 @@ module Appiaries
     end
   end # Client
   
-  class JsonData < Client
+  class JsonDataClient < Client
     attr_accessor :collection_id
     attr_accessor :datastore_id
     attr_accessor :application_id

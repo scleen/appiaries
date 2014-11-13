@@ -3,6 +3,31 @@ appiaries
 
 appiaries ruby client
 
+# TODOs
+
+items to track todos: once done, completed testing, move it to the CLOSED section 
+
+ - JsonDataClient
+  - create
+  - update
+  - updateField
+  - delete
+  - get
+  - find (might be get enhance)
+ - FileDataClient
+  - create
+  - update
+  - delete
+  - get
+  - find (might be get enhance)
+
+# CLOSED
+
+ - JsonDataClient
+  - get
+
+ - FileDataClient
+
 # About appiaries-client
 
 Appiaries is a mobile backend as a service which helps you develop mobile apps and other web application very easily. This library, appiaries-client, is developed for those who would like to develop ruby application integrated with Appiaries service.

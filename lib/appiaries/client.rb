@@ -44,13 +44,19 @@ module Appiaries
         query['get'] = true
       end
       uri += "?" + URI.escape(query.collect{|k,v| "#{k}=#{v}"}.join('&'))
-      # puts "execute=>" + uri
-      JSON.parse RestClient::Request.execute(
+      #puts "#{method} uri => #{uri}"
+      # RestClient.log = 'stdout'
+      res = RestClient::Request.execute(
             :method => method,
             :url => uri,
             :payload => payload,
             :headers => headers
           )
+      if method == :delete
+        res
+      else
+        JSON.parse res
+      end
     end
 
     def get(uri)
@@ -63,6 +69,10 @@ module Appiaries
 
     def put(uri, body)
       request(uri, :put, body)
+    end
+
+    def patch(uri, body)
+      request(uri, :patch, body)
     end
 
     def delete(uri)
@@ -86,14 +96,23 @@ module Appiaries
     end
     def get(cond)
       # TODO if cond.is_a String, tehn get one, otherwise search and find
-      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, object_id)
+      uri = nil
+      if cond.is_a? String
+        uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, cond)
+      else
+        # TODO search
+        uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, cond)
+      end
+      # puts "get => #{uri}"
       super(uri)
     end
-    def update(object_id, json = {})
-      # TODO implementation
+    def put(object_id, json = {})
+      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, object_id)
+      super(uri, json.to_json)
     end
-    def updateField(object_id, json = {})
-      # TODO implementation
+    def update(object_id, json = {})
+      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, object_id)
+      patch(uri, json.to_json)
     end
     def delete(object_id)
       uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, object_id)

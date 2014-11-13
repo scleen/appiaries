@@ -86,17 +86,17 @@ module Appiaries
     end
     def get(cond)
       # TODO if cond.is_a String, tehn get one, otherwise search and find
-      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, objectid)
+      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, object_id)
       super(uri)
     end
-    def update(objectid, json = {})
+    def update(object_id, json = {})
       # TODO implementation
     end
-    def updateField(objectid, json = {})
+    def updateField(object_id, json = {})
       # TODO implementation
     end
-    def delete(objectid)
-      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, objectid)
+    def delete(object_id)
+      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, object_id)
       super(uri)
     end
   end # JsonData

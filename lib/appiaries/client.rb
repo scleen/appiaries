@@ -102,7 +102,7 @@ module Appiaries
       else
         uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, nil)
       end
-      puts "get => #{uri}"
+      #puts "get => #{uri}"
       super(uri)
     end
     def put(object_id, json = {})

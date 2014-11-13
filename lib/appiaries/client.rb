@@ -97,13 +97,12 @@ module Appiaries
     def get(cond)
       # TODO if cond.is_a String, tehn get one, otherwise search and find
       uri = nil
-      if cond.is_a? String
+      if cond
         uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, cond)
       else
-        # TODO search
-        uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, cond)
+        uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, nil)
       end
-      # puts "get => #{uri}"
+      puts "get => #{uri}"
       super(uri)
     end
     def put(object_id, json = {})

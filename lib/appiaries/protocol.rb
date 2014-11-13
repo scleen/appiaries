@@ -23,9 +23,11 @@ module Appiaries
     # ----------------------------------------
 
     # Construct a uri referencing a given Appiaries JSON Data
-    def Protocol.jsondata_uri(datastore_id, application_id, collection_id, object_id = nil)
-      if object_id
-        "/v#{VERSION}/dat/#{datastore_id}/#{application_id}/#{collection_id}/#{object_id}"
+    def Protocol.jsondata_uri(datastore_id, application_id, collection_id, cond = nil)
+      if cond.is_a? String
+        "/v#{VERSION}/dat/#{datastore_id}/#{application_id}/#{collection_id}/#{cond}"
+      elsif cond.is_a? Appiaries::Query
+        "/v#{VERSION}/dat/#{datastore_id}/#{application_id}/#{collection_id}/#{cond.to_cond}"
       else
         "/v#{VERSION}/dat/#{datastore_id}/#{application_id}/#{collection_id}"
       end

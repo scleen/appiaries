@@ -80,7 +80,22 @@ module Appiaries
       @datastore_id   = data[:datastore_id]
       @application_id = data[:application_id]
     end
-    def get(objectid)
+    def create(body = {})
+      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, nil)
+      post(uri, body.to_json)
+    end
+    def get(cond)
+      # TODO if cond.is_a String, tehn get one, otherwise search and find
+      uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, objectid)
+      super(uri)
+    end
+    def update(objectid, json = {})
+      # TODO implementation
+    end
+    def updateField(objectid, json = {})
+      # TODO implementation
+    end
+    def delete(objectid)
       uri = "https://" + self.host + Appiaries::Protocol.jsondata_uri(@datastore_id, @application_id, @collection_id, objectid)
       super(uri)
     end

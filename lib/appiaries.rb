@@ -10,3 +10,5 @@ $:.unshift(cwd.to_s) unless $:.include?(cwd.to_s) || $:.include?(cwd.expand_path
 
 require 'appiaries/object'
 require 'appiaries/protocol'
+require 'appiaries/query'
+

@@ -45,7 +45,7 @@ module Appiaries
       end
       uri += "?" + URI.escape(query.collect{|k,v| "#{k}=#{v}"}.join('&'))
       #puts "#{method} uri => #{uri}"
-      # RestClient.log = 'stdout'
+      #RestClient.log = 'stdout'
       res = RestClient::Request.execute(
             :method => method,
             :url => uri,

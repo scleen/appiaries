@@ -8,12 +8,14 @@ DATASTORE_ID = '_sandbox'
 COLLECTION_ID= 'thumbnails'
 
 class AppiariesTest < Test::Unit::TestCase
+  
   def setup
     @config = YAML.load(File.open(File.join(File.dirname(__FILE__), 'config.yml')).read)
     @apptoken = @config['appiaries_app_token']
-    # puts "#{@apptoken} is ready"
+    #puts "#{@apptoken} is ready"
     @to_be_deleted_on_teardown = []
   end
+  
   def teardown
     client = Appiaries::Client.new(:application_token => @apptoken)
     collection_id = "sample_json_data"
@@ -32,6 +34,7 @@ class AppiariesTest < Test::Unit::TestCase
     assert_equal "https://api-datastore.appiaries.com/v1/dat/_sandbox/smilein5sec/thumbnails", uri
   end
   def test_jsondata_get
+    assert_not_nil @apptoken
     host = Appiaries::Protocol::HOST
     collection_id = "sample_json_data"
     uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, "sample")
@@ -42,6 +45,7 @@ class AppiariesTest < Test::Unit::TestCase
     assert_equal "sample", res["name"]
   end
   def test_jsondata_create
+    assert_not_nil @apptoken
     host = Appiaries::Protocol::HOST
     collection_id = "sample_json_data"
     uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, nil)
@@ -51,6 +55,7 @@ class AppiariesTest < Test::Unit::TestCase
     @to_be_deleted_on_teardown.push(res["_id"])
   end
   def test_jsondata_create_update
+    assert_not_nil @apptoken
     host = Appiaries::Protocol::HOST
     collection_id = "sample_json_data"
     uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, nil)
@@ -67,6 +72,7 @@ class AppiariesTest < Test::Unit::TestCase
     @to_be_deleted_on_teardown.push(res["_id"])
   end
   def test_jsondata_create_delete
+    assert_not_nil @apptoken
     host = Appiaries::Protocol::HOST
     collection_id = "sample_json_data"
     uri = "https://" + host + Appiaries::Protocol.jsondata_uri(DATASTORE_ID, APP_ID, collection_id, nil)
